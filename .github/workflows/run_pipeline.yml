@@ -1,0 +1,36 @@
+name: Run Nature Counter Pipeline
+
+on:
+  workflow_dispatch: # Allows manual triggering
+  schedule:
+    - cron: '0 5 * * *' # Runs at 05:00 UTC every day (9 PM PST / 10 PM PDT)
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run pipeline script
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
+          DRIVE_SA_JSON: ${{ secrets.DRIVE_SA_JSON }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python pipeline_config.py
