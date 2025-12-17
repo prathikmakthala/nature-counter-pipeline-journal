@@ -27,6 +27,7 @@ jobs:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
           DRIVE_SA_JSON: ${{ secrets.DRIVE_SA_JSON }}
+          SHEET_NAME: ${{ secrets.SHEET_NAME || 'sheet1' }}
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
           SMTP_USER: ${{ secrets.SMTP_USER }}
