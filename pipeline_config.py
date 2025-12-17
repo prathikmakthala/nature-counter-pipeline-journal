@@ -4,7 +4,7 @@
 from pipeline_project import run_once
 
 # --- Your hardcoded values (per your request) ---
-MONGO_URI       = "mongodb+srv://dbadmin:natureCounter%401998@nature-counter-server-c.n8xv09r.mongodb.net/NC_dev_db?appName=Nature-Counter-Server-Cluster-1"
+MONGO_URI       = ""
 SPREADSHEET_ID  = ""
 
 # Where the service account JSON lives on your machine.
